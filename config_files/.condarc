@@ -1,0 +1,11 @@
+channels:
+- defaults
+
+show_channel_urls: True
+allow_other_channels: True
+
+proxy_servers:
+    http: http://proxy.iiit.ac.in:8080
+    https: https://proxy.iiit.ac.in:8080
+
+ssl_verify: False

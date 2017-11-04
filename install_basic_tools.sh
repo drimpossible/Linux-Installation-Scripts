@@ -31,6 +31,8 @@ sudo apt-get -y install libopenblas-dev
 sudo apt-get -y install libhdf5-dev
 sudo apt-get -y install tree
 sudo apt-get -y remove mono-runtime-common gnome-orca virtualbox-guest*
+sudo apt-get -y install npm
+sudo apt-get -y install calibre
 
 sudo sed -i 's/false/true/g' /etc/apt/apt.conf.d/00recommends
 git config --global url.https://github.com/.insteadOf git://github.com/
