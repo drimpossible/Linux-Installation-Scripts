@@ -1,5 +1,5 @@
 ﻿sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
-sudo add-apt-repository ppa:videolan/master-daily
+sudo add-apt-repository -y ppa:videolan/master-daily
 sudo apt-get -y update
 sudo apt-get -y install make cmake gcc g++
 sudo apt-get -y install CMake
