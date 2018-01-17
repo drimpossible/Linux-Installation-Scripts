@@ -130,12 +130,9 @@ export PS1='\[\033[01;32m\]\h\[\033[01;34m\] \W -> \[\033[00m\]'
 export HISTFILESIZE=3000000 # the bash history should save 3000 commands
 export HISTCONTROL=ignoredups #don't put duplicate lines in the history.
 export PATH=/usr/local/cuda/bin:$PATH
-export PATH=/usr/local/cuda-8.0/bin:$PATH
-export LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
-export CUDA_HOME=/usr/local/cuda-8.0
-export CPATH=/usr/local/cuda-8.0/include:$CPATH
+export CUDA_HOME=/usr/local/cuda
+export CPATH=/usr/local/cuda/include:$CPATH
 #export PYTHONPATH="/usr/local/lib/python3.5/:/usr/lib/python3.5/:${PYTHONPATH}"
 
 export use_proxy=yes
