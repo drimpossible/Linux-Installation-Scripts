@@ -134,13 +134,6 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export CUDA_HOME=/usr/local/cuda
 export CPATH=/usr/local/cuda/include:$CPATH
 #export PYTHONPATH="/usr/local/lib/python3.5/:/usr/lib/python3.5/:${PYTHONPATH}"
-
-export use_proxy=yes
-export http_proxy=http://proxy.iiit.ac.in:8080
-export https_proxy=http://proxy.iiit.ac.in:8080
-export ftp_proxy=http://proxy.iiit.ac.in:8080
-export no_proxy="::1,localhost,127.0.0.1/8,iiit.ac.in,*.iiit.ac.in,iiit.net,*.iiit.net,iiith.org,172.16.0.0/12,192.168.0.0/16,10.0.0.0/8"
-
 alias r="reset"
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -157,5 +150,5 @@ alias sbrc="source ~/.bashrc 2>~/basherror.txt"
 alias hist='history | grep $1' #Requires one input
 alias login='ssh -XC -c arcfour,blowfish-cbc'
 alias e='exit'
-alias cbrc='subl ~/.bashrc
+alias cbrc='subl ~/.bashrc'
 
