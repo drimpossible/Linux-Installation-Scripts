@@ -150,5 +150,5 @@ alias sbrc="source ~/.bashrc 2>~/basherror.txt"
 alias hist='history | grep $1' #Requires one input
 alias login='ssh -XC -c arcfour,blowfish-cbc'
 alias e='exit'
-alias cbrc='subl ~/.bashrc'
+alias cbrc='nano ~/.bashrc'
 

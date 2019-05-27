@@ -1,12 +1,24 @@
-sudo apt-get -y update
-sudo apt-get -y install make cmake gcc g++ tmux ncdu htop gparted git-core git-gui git-doc dkms build-essential linux-headers-generic
-sudo apt-get -y install python3-setuptools python3-venv python3-pip
-sudo apt-get -y install gir1.2-gtop-2.0
-sudo apt-get -y install texlive
-sudo apt-get -y install texmaker
-sudo apt-get -y install libboost-all-dev
-sudo apt-get -y install leafpad npm calibre openssh-server
-sudo apt-get -y install preload xpad pydf vim libopenblas-dev libhdf5-dev
-sudo sed -i 's/false/true/g' /etc/apt/apt.conf.d/00recommends
-git config --global url.https://github.com/.insteadOf git://github.com/
+sudo apt -y update && sudo apt -y upgrade  
+sudo apt -y install build-essential cmake g++ gcc gfortran git pkg-config python3-dev software-properties-common wget tmux ncdu htop gparted dkms linux-headers-generic libncurses-dev libboost-all-dev
+sudo apt -y autoremove 
+sudo rm -rf /var/lib/apt/lists/*
+
+# Install OpenBLAS
+mkdir ~/installs
+cd ~/installs
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+make FC=gfortran -j $(($(nproc) + 1))
+sudo make PREFIX=/usr/local install
+
+# Install ZSH
+sudo apt -y install zsh
+# oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+sudo apt install -y libfreetype6-dev libpng12-dev texlive-full texmaker openssh-server libhdf5-dev
+sudo apt remove -y mono-* libmono-* xscreensaver-gl
 sudo ufw enable
+
+

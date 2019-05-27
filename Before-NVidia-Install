@@ -1,4 +1,0 @@
-1) Copy the cuda .run file and the driver file to the ~/ folder.
-2) Run preinstall_nvidia.sh
-5) Reboot the system
-6) Run install_nvidia_main.sh

@@ -1,6 +1,0 @@
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/cuda/bin"
-export http_proxy="http://proxy.iiit.ac.in:8080"
-export https_proxy="http://proxy.iiit.ac.in:8080"
-export ftp_proxy="http://proxy.iiit.ac.in:8080"
-export HTTP_PROXY="http://proxy.iiit.ac.in:8080"
-export HTTPS_PROXY="http://proxy.iiit.ac.in:8080"
