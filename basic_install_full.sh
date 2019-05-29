@@ -1,8 +1,10 @@
 # Basic installations
 sudo apt update -y  && sudo apt upgrade -y
-sudo apt install -y build-essential cmake g++ gcc gfortran git pkg-config python3-dev software-properties-common wget tmux ncdu htop gparted dkms linux-headers-generic libncurses-dev libboost-all-dev preload clamav
+sudo apt install -y build-essential cmake g++ gcc gfortran git pkg-config python3-dev python3-pip python3-venv software-properties-common wget tmux ncdu htop gparted dkms linux-headers-generic libncurses-dev libboost-all-dev preload clamav
 sudo apt autoremove -y 
 sudo rm -rf /var/lib/apt/lists/*
+mkdir ~/installs
+python3 -m venv ~/installs/3
 
 # Move config files - System optimizations
 sudo mv ./config_files/grub /etc/default/grub
@@ -22,7 +24,6 @@ wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.d
 sudo apt install ./slack-desktop-*.deb
 
 # Install OpenBLAS
-mkdir ~/installs
 cd ~/installs
 git clone https://github.com/xianyi/OpenBLAS.git
 cd OpenBLAS
@@ -41,11 +42,28 @@ sudo apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 sudo apt update -y 
 sudo apt install -y cuda
 
+# Install Intel MKL Libraries & configure defaults to use these
+sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
+sudo apt update -y && sudo apt install -y intel-mkl-64bit-2019.4-070
+sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so     libblas.so-x86_64-linux-gnu      /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
+sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3   libblas.so.3-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
+sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
+sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu  /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
+sudo sh -c "echo '/opt/intel/lib/intel64'     >  /etc/ld.so.conf.d/mkl.conf"
+sudo sh -c "echo '/opt/intel/mkl/lib/intel64' >> /etc/ld.so.conf.d/mkl.conf"
+sudo ldconfig
+sudo sh -c "echo 'MKL_THREADING_LAYER=GNU' >> /etc/environment"
+
 # Other basic utilies
 sudo apt install -y libfreetype6-dev libpng12-dev texlive-full texmaker openssh-server libhdf5-dev
 sudo apt remove -y mono-* libmono-* xscreensaver-gl
 sudo apt-get remove -y openjdk*
 sudo ufw enable
+
+sudo apt update -y  && sudo apt upgrade -y
+sudo apt autoremove -y
+bash pip3_install.sh
  
 sudo dpkg-reconfigure fontconfig
 sudo chown -R -v $USER:$USER $HOME
