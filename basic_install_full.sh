@@ -29,6 +29,7 @@ git clone https://github.com/xianyi/OpenBLAS.git
 cd OpenBLAS
 make FC=gfortran -j $(($(nproc) + 1))
 sudo make PREFIX=/usr/local install
+cd ~
 
 ## Install ZSH
 #sudo apt install -y zsh
