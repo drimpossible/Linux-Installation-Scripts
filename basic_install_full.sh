@@ -1,6 +1,7 @@
 # Basic installations
 sudo apt update -y  && sudo apt upgrade -y
-sudo apt install -y build-essential cmake g++ gcc gfortran git pkg-config python3-dev python3-pip python3-venv software-properties-common wget tmux ncdu htop gparted dkms linux-headers-generic libncurses-dev libboost-all-dev preload clamav
+sudo apt install -y build-essential cmake autoconf automake libtool g++ gcc gfortran git pkg-config python3-dev python3-pip python3-venv software-properties-common wget tmux ncdu htop gparted dkms linux-headers-generic libncurses-dev libboost-all-dev preload clamav libjpeg-turbo8-dev
+sudo apt install -y libssl-dev libffi-dev libxml2-dev libxslt1-dev zlib1g-dev
 sudo apt autoremove -y 
 sudo rm -rf /var/lib/apt/lists/*
 mkdir ~/installs
@@ -46,7 +47,12 @@ sudo apt install -y cuda
 # Install Intel MKL Libraries & configure defaults to use these
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
-sudo apt update -y && sudo apt install -y intel-mkl-64bit-2019.4-070
+sudo sh -c 'echo deb https://apt.repos.intel.com/ipp all main > /etc/apt/sources.list.d/intel-ipp.list'
+sudo sh -c 'echo deb https://apt.repos.intel.com/tbb all main > /etc/apt/sources.list.d/intel-tbb.list'
+sudo sh -c 'echo deb https://apt.repos.intel.com/daal all main > /etc/apt/sources.list.d/intel-daal.list'
+sudo sh -c 'echo deb https://apt.repos.intel.com/mpi all main > /etc/apt/sources.list.d/intel-mpi.list'
+sudo sh -c 'echo deb https://apt.repos.intel.com/intelpython binary/ > /etc/apt/sources.list.d/intelpython.list'
+sudo apt update -y && sudo apt install -y intel-mkl-64bit-2019.4-070 intel-ipp-64bit-2019.4-070 intel-tbb-64bit-2019.6-070 intel-mpi-2019.4-070 intelpython3
 sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so     libblas.so-x86_64-linux-gnu      /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
 sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3   libblas.so.3-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
 sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
@@ -63,7 +69,6 @@ sudo apt-get remove -y openjdk*
 sudo ufw enable
 
 sudo apt update -y  && sudo apt upgrade -y
-sudo apt autoremove -y
 bash pip3_install.sh
  
 sudo dpkg-reconfigure fontconfig
