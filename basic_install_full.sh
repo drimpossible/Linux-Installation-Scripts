@@ -45,6 +45,7 @@ sudo apt update -y
 sudo apt install -y cuda
 
 # Install Intel MKL Libraries & configure defaults to use these
+wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
 sudo sh -c 'echo deb https://apt.repos.intel.com/ipp all main > /etc/apt/sources.list.d/intel-ipp.list'
@@ -62,6 +63,8 @@ sudo sh -c "echo '/opt/intel/mkl/lib/intel64' >> /etc/ld.so.conf.d/mkl.conf"
 sudo ldconfig
 sudo sh -c "echo 'MKL_THREADING_LAYER=GNU' >> /etc/environment"
 
+source ~/.bashrc
+reset
 # Other basic utilies
 sudo apt install -y libfreetype6-dev libpng12-dev texlive-full texmaker openssh-server libhdf5-dev
 sudo apt remove -y mono-* libmono-* xscreensaver-gl
