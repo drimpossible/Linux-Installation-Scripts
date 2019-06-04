@@ -72,8 +72,8 @@ sudo apt update -y  && sudo apt upgrade -y
 bash pip3_install.sh
  
 sudo dpkg-reconfigure fontconfig
-sudo chown -R -v $USER:$USER $HOME
-chmod -v 700 $HOME
+sudo add-apt-repository ppa:lyx-devel/release
+sudo apt update -y && sudo apt install -y lyx
 sudo update-grub
 
 sudo reboot
