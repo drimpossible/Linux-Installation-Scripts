@@ -78,7 +78,7 @@ sudo apt-get remove -y openjdk*
 sudo ufw enable
 
 sudo apt update -y  && sudo apt upgrade -y
-bash pip3_install.sh
+#bash pip3_install.sh
  
 sudo dpkg-reconfigure fontconfig
 sudo add-apt-repository ppa:lyx-devel/release
