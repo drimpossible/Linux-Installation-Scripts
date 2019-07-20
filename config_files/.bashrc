@@ -293,7 +293,7 @@ trim()
 #######################################################
 
 alias cpu="grep 'cpu ' /proc/stat | awk '{usage=(\$2+\$4)*100/(\$2+\$4+\$5)} END {print usage}' | awk '{printf(\"%.1f\n\", \$1)}'"
-export PS1='\[\033[01;34m\] \W > \[\033[00m\]'
+export PS1='\033[01;32m\h\033[01;34m \W > \033[00m'
 
 
 # set a fancy prompt (non-color, unless we know we "want" color)
