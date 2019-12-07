@@ -38,6 +38,9 @@ make FC=gfortran -j $(($(nproc) + 1))
 sudo make PREFIX=/usr/local install
 cd ~
 
+#Install FFMPEG
+sudo apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev ffmpeg
+
 ## Install ZSH
 #sudo apt install -y zsh
 ## oh my zsh
