@@ -2,7 +2,6 @@
 sudo apt update -y  && sudo apt upgrade -y
 sudo apt install -y build-essential cmake autoconf automake libtool g++ gcc gfortran git pkg-config python3-dev python3-pip python3-venv software-properties-common wget tmux ncdu htop gparted dkms linux-headers-generic libncurses-dev libboost-all-dev preload clamav libjpeg-turbo8-dev
 sudo apt install -y libssl-dev libffi-dev libxml2-dev libxslt1-dev zlib1g-dev
-sudo apt install -y snapd
 sudo apt autoremove -y 
 sudo rm -rf /var/lib/apt/lists/*
 mkdir ~/installs
