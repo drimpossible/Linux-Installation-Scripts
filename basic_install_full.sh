@@ -21,61 +21,23 @@ sudo sed -i 's/false/true/g' /etc/apt/apt.conf.d/00recommends
 sudo apt-get remove mono-runtime-common gnome-orca
 
 # Install slack
-wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.9.1-amd64.deb
-sudo apt install ./slack-desktop-*.deb
-rm ./slack-desktop-4.9.1-amd64.deb
-
-# Install Discord
-wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-sudo apt install --fix-broken ./discord.deb
-rm ./discord.deb
-
-# Install OpenBLAS
-cd ~/installs
-git clone https://github.com/xianyi/OpenBLAS.git
-cd OpenBLAS
-make FC=gfortran -j $(($(nproc) + 1))
-sudo make PREFIX=/usr/local install
-cd ~
-
-## Install ZSH
-#sudo apt install -y zsh
-## oh my zsh
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo snap install slack --classic
 
 # Install CUDA
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
-wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
-sudo apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/11.4.1/local_installers/cuda-repo-ubuntu2004-11-4-local_11.4.1-470.57.02-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2004-11-4-local_11.4.1-470.57.02-1_amd64.deb
+sudo apt-key add /var/cuda-repo-ubuntu2004-11-4-local/7fa2af80.pub
 sudo apt-get -y update
 sudo apt-get -y install cuda
-
-# Install Intel MKL Libraries & configure defaults to use these
-wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
-sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
-sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
-sudo sh -c 'echo deb https://apt.repos.intel.com/ipp all main > /etc/apt/sources.list.d/intel-ipp.list'
-sudo sh -c 'echo deb https://apt.repos.intel.com/tbb all main > /etc/apt/sources.list.d/intel-tbb.list'
-sudo sh -c 'echo deb https://apt.repos.intel.com/daal all main > /etc/apt/sources.list.d/intel-daal.list'
-sudo sh -c 'echo deb https://apt.repos.intel.com/mpi all main > /etc/apt/sources.list.d/intel-mpi.list'
-sudo sh -c 'echo deb https://apt.repos.intel.com/intelpython binary/ > /etc/apt/sources.list.d/intelpython.list'
-sudo apt update -y && sudo apt install -y intel-mkl-64bit-2019.4-070 intel-ipp-64bit-2019.4-070 intel-tbb-64bit-2019.6-070 intel-mpi-2019.4-070 intelpython3
-sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so     libblas.so-x86_64-linux-gnu      /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
-sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3   libblas.so.3-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
-sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
-sudo update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu  /opt/intel/mkl/lib/intel64/libmkl_rt.so 150
-sudo sh -c "echo '/opt/intel/lib/intel64'     >  /etc/ld.so.conf.d/mkl.conf"
-sudo sh -c "echo '/opt/intel/mkl/lib/intel64' >> /etc/ld.so.conf.d/mkl.conf"
-sudo ldconfig
-sudo sh -c "echo 'MKL_THREADING_LAYER=GNU' >> /etc/environment"
 
 #Install FFMPEG
 sudo apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev ffmpeg
 
 source ~/.bashrc
 reset
+
 # Other basic utilies
 sudo apt install -y libfreetype6-dev libpng12-dev texlive-full texmaker openssh-server libhdf5-dev
 sudo apt remove -y mono-* libmono-* xscreensaver-gl
